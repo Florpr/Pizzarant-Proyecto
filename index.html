@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizzarant - Inicio</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+
+    <style>
+        /* Variables y Estilos Base copiados de Quienes Somos */
+        :root {
+            --red-pizzarant: #7E1412;
+            --cream-pizzarant: #f8f4ed;
+            --dark-text: #222;
+            --gray-text: #666;
+            --light-gray: #f0f0f0;
+            --dark-background: #1a1a1a;
+            --menu-link-color: white;
+
+            /* FUENTES */
+            --font-display: 'Playfair Display', serif;
+            --font-body: 'Inter', sans-serif;
+
+            --footer-bg: white;
+            --footer-text-color: var(--dark-text);
+            --footer-highlight: var(--red-pizzarant);
+            --border-color: #ddd;
+        }
+
+        body {
+            font-family: var(--font-body);
+            margin: 0;
+            padding: 0;
+            background-color: var(--cream-pizzarant); /* CAMBIADO: Fondo sutil para la Landing */
+            color: var(--dark-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* HEADER (COPIADO DE QUIENES SOMOS) */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-top: 8px solid var(--red-pizzarant);
+            padding: 15px 0;
+            position: relative;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            max-width: 180px;
+            height: auto;
+            display: block;
+        }
+
+        /* ESTILOS DE NAVEGACIÓN (ESCRITORIO) */
+        .desktop-nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        .desktop-nav a {
+            text-decoration: none;
+            color: var(--gray-text);
+            font-weight: 500;
+            padding: 10px 15px;
+            transition: color 0.3s, border-bottom 0.3s;
+        }
+
+        .desktop-nav a:hover {
+            color: var(--red-pizzarant);
+        }
+
+        .desktop-nav .active {
+            color: var(--red-pizzarant);
+            font-weight: 700;
+            border-bottom: 2px solid var(--red-pizzarant);
+        }
+
+        /* OVERLAY Y HAMBURGUESA (COPIADO DE QUIENES SOMOS) */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--red-pizzarant);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s;
+        }
+
+        .mobile-menu-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            font-size: 3em;
+            color: white;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .menu-links {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            gap: 20px;
+        }
+
+        .menu-links a {
+            font-family: var(--font-display);
+            text-decoration: none;
+            color: var(--menu-link-color);
+            font-size: 2.2em;
+            font-weight: 700;
+            padding: 15px 0;
+            letter-spacing: 2px;
+            position: relative;
+            transition: color 0.40s;
+        }
+
+        .menu-links a:hover {
+            color: var(--cream-pizzarant);
+        }
+
+        .menu-links a::after {
+            content: '';
+            display: block;
+            width: 30px;
+            height: 1px;
+            background-color: var(--menu-link-color);
+            margin: 10px auto 0;
+            transition: width 0.3s;
+        }
+
+        .menu-links a:hover::after {
+            width: 80px;
+            background-color: var(--cream-pizzarant);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.25em;
+            cursor: pointer;
+            color: var(--dark-text);
+            padding: 0 13px;
+        }
+        
+        /* --- LANDING PAGE SECTIONS --- */
+
+        /* 1. HERO/IMAGEN PRINCIPAL (Estilo Botanist) */
+        .hero-landing {
+            position: relative;
+            height: 80vh; /* Altura de la vista */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: rgb(250, 248, 248); /* Texto blanco sobre la imagen oscura */
+            background-image: linear-gradient(rgba(236, 226, 226, 0), rgba(172, 32, 32, 0)), 
+                url('imagenes/hero-pizza.jpg'); /* RUTA DE IMAGEN PRINCIPAL */
+            background-size: cover;
+            background-position: center 30%; /* Ajustado para mejor visibilidad */
+            padding: 40px 20px;
+        }
+        
+        .hero-content {
+            z-index: 10;
+            max-width: 800px;
+        }
+
+        .hero-content h1 {
+            font-family: var(--font-display);
+            font-size: 6em;
+            font-weight: 800;
+            margin: 0;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            line-height: 1;
+            letter-spacing: 3px;
+        }
+
+        .hero-content p {
+            font-family: var(--font-body);
+            font-size: 1.5em;
+            margin-top: 15px;
+            font-weight: 400;
+            line-height: 1.4;
+        }
+
+        /* 2. INTRODUCTORY TEXT (Estilo Botanist texto largo) */
+        .intro-text-section {
+            padding: 60px 20px;
+            text-align: center;
+            background-color: var(--cream-pizzarant);
+        }
+
+        .intro-text-section p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.15em;
+            line-height: 1.8;
+            color: var(--dark-text);
+        }
+
+        /* 3. MENU CALL TO ACTION (Estilo Screenshot 2025-10-09 085550.jpg) */
+        .menu-cta-section {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            background-color: var(--red-pizzarant); /* Fondo rojo como se solicitó */
+            color: white;
+            min-height: 400px;
+        }
+        
+        .menu-cta-image {
+            background-image: url('imagenes/Pizza screenshot.webp'); /* RUTA DE LA IMAGEN DE PIZZA */
+            background-size: cover;
+            background-position: center;
+            min-height: 200px;
+            flex: 1;
+        }
+
+        .menu-cta-text {
+            flex: 1;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .menu-cta-text h3 {
+            font-family: var(--font-display);
+            font-size: 3em;
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .menu-cta-text p {
+            font-size: 1.1em;
+            margin-bottom: 25px;
+            max-width: 500px;
+        }
+
+        /* BOTÓN ESTILO BOTANIST */
+        .menu-button {
+            padding: 12px 25px;
+            border: 2px solid white;
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            letter-spacing: 2px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            font-family: var(--font-body); /* Usando Inter para que sea limpio */
+        }
+
+        .menu-button:hover {
+            background-color: white;
+            color: var(--red-pizzarant);
+        }
+
+
+        /* 4. SECCIÓN DE RESEÑAS (NUEVA) */
+        .reviews-section {
+            padding: 80px 20px 40px 20px;
+            text-align: center;
+            background-color: var(--light-gray);
+        }
+
+        .reviews-section h2 {
+            font-family: var(--font-display);
+            font-size: 3em;
+            color: var(--red-pizzarant);
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .reviews-section p.subtitle {
+            font-family: var(--font-body);
+            font-size: 1.1em;
+            color: var(--gray-text);
+            margin-bottom: 40px;
+        }
+
+        .reviews-content {
+            display: flex;
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        /* Formulario para escribir reseña */
+        .review-form-box {
+            flex: 1;
+            padding: 30px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        .review-form-box h3 {
+            font-family: var(--font-display);
+            font-size: 1.8em;
+            margin-top: 0;
+            color: var(--dark-text);
+        }
+
+        .review-form-box label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .review-form-box input[type="text"],
+        .review-form-box textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-family: var(--font-body);
+        }
+
+        .review-form-box textarea {
+            resize: vertical;
+            height: 100px;
+        }
+
+        /* Estrellas para Calificación */
+        .rating-stars {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 20px;
+        }
+
+        .rating-stars input[type="radio"] {
+            display: none;
+        }
+
+        .rating-stars label {
+            font-size: 2em;
+            color: #ddd; /* Estrellas grises por defecto */
+            cursor: pointer;
+            transition: color 0.2s;
+            line-height: 1;
+            margin: 0; /* Anular margin-bottom de label general */
+        }
+        
+        /* Estrellas negras al seleccionarlas */
+        .rating-stars input[type="radio"]:checked ~ label,
+        .rating-stars label:hover,
+        .rating-stars label:hover ~ label {
+            color: black; /* Estrellas negras como se solicitó */
+        }
+
+        .review-form-box button {
+            background-color: var(--red-pizzarant);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s;
+        }
+
+        .review-form-box button:hover {
+            background-color: #5d100f;
+        }
+
+        /* Caja de Reseñas Vistas (Caja más pequeña y contenida) */
+        .all-reviews-box {
+            flex: 1;
+            padding: 30px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px; /* Tamaño máximo para que no parezca Yelp */
+        }
+
+        .all-reviews-box h3 {
+            font-family: var(--font-display);
+            font-size: 1.8em;
+            margin-top: 0;
+            color: var(--dark-text);
+        }
+
+        .all-reviews-box a.reviews-link {
+            display: block;
+            margin-top: 20px;
+            background-color: var(--gray-text);
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .all-reviews-box a.reviews-link:hover {
+            background-color: var(--dark-text);
+        }
+
+        .review-summary {
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--light-gray);
+            padding-bottom: 15px;
+        }
+
+        .review-summary h4 {
+            margin: 0;
+            font-size: 1.1em;
+            color: var(--red-pizzarant);
+            font-family: var(--font-display);
+        }
+        
+        .review-summary .stars {
+            color: black; /* Las estrellas de la reseña vista también son negras */
+            font-size: 1.2em;
+            display: block;
+        }
+
+
+        /* FOOTER (COPIADO DE QUIENES SOMOS) */
+        footer {
+            background-color: var(--footer-bg);
+            color: var(--footer-text-color);
+            padding: 50px 0 20px 0;
+            border-top: 5px solid var(--footer-highlight);
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr); /* 5 columnas para todo: 3 info + 2 redes */
+            gap: 20px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 20px
+        }
+
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 10px;
+            border-right: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .footer-column:nth-child(3), .footer-column:nth-child(4) {
+            border-right: 1px solid var(--border-color);
+        }
+
+        .footer-column:last-child {
+            border-right: none;
+        }
+
+        .footer-column h3 {
+            font-family: var(--font-display);
+            font-size: 1.1em;
+            font-weight: 700;
+            color: var(--footer-highlight);
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .footer-column h4 {
+            font-family: var(--font-display);
+            font-size: .70em;
+            font-weight: 700;
+            color: var(--dark-text);
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .footer-column p,
+        .footer-column a {
+            font-size: 0.95em;
+            color: var(--footer-text-color);
+            text-decoration: none;
+            margin-bottom: 5px;
+            line-height: 1.4;
+            transition: color 0.03s;
+        }
+
+        .footer-column a:hover {
+            color: var(--footer-highlight);
+        }
+
+        .icon-container {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .footer-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        /* MEDIA QUERIES */
+
+        @media (max-width: 992px) {
+            .hero-content h1 {
+                font-size: 4em;
+            }
+            .menu-cta-section {
+                flex-direction: column;
+            }
+            .menu-cta-text {
+                align-items: center;
+                text-align: center;
+            }
+            .menu-cta-text p {
+                text-align: center;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr 1fr; /* 2 columnas en tablet */
+            }
+
+            .footer-column {
+                border-right: 1px solid var(--border-color);
+                border-bottom: 1px solid var(--border-color);
+                padding-bottom: 20px;
+                margin-bottom: 20px;
+            }
+            .footer-column:nth-child(2n) {
+                border-right: none;
+            }
+            .footer-column:last-child {
+                border-bottom: none;
+                border-right: none;
+            }
+        }
+        
+        @media (max-width: 767px) {
+            .desktop-nav {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero-landing {
+                height: 60vh;
+            }
+
+            .hero-content h1 {
+                font-size: 3em;
+            }
+            .hero-content p {
+                font-size: 1.2em;
+            }
+            
+            .reviews-content {
+                flex-direction: column; /* Coloca las cajas una encima de la otra */
+                gap: 30px;
+            }
+            
+            .review-form-box, .all-reviews-box {
+                max-width: 100%; /* Ocupan todo el ancho disponible */
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr; /* 1 columna en móvil */
+            }
+
+            .footer-column {
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+            }
+            .footer-column:last-child {
+                border-bottom: none;
+            }
+        }
+
+        @media (min-width: 993px) {
+            .menu-cta-section {
+                flex-direction: row-reverse; /* Imagen a la derecha, Texto a la izquierda */
+            }
+        }
+        /* ---------------------------------------------------------------------- */
+/* --- ESTILOS PARA EL MODAL DE RESEÑAS --- */
+/* ---------------------------------------------------------------------- */
+
+/* El overlay que cubre toda la pantalla */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none; /* Inicialmente oculto */
+    justify-content: center;
+    align-items: center;
+    z-index: 3000;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.modal-overlay.active {
+    display: flex;
+    opacity: 1;
+}
+
+/* El contenedor principal del modal */
+.modal-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 90%;
+    width: 600px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(-50px); /* Para la animación */
+    transition: transform 0.3s ease-in-out;
+}
+
+.modal-overlay.active .modal-content {
+    transform: translateY(0);
+}
+
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.modal-header h3 {
+    font-size: 1.8em;
+    color: var(--red-pizzarant);
+}
+
+.modal-close-btn {
+    background: none;
+    border: none;
+    font-size: 2em;
+    cursor: pointer;
+    color: var(--dark-text);
+    line-height: 1;
+}
+
+/* Contenedor de Reseñas, con scroll si es necesario */
+.all-reviews-list {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-right: 15px; /* Espacio para el scrollbar */
+    margin-bottom: 20px;
+}
+
+.review-item {
+    border-bottom: 1px dashed var(--light-gray);
+    padding: 15px 0;
+}
+
+.review-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.review-item .meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.review-item .name {
+    font-weight: 700;
+    color: var(--dark-text);
+}
+
+.review-item .date {
+    font-size: 0.8em;
+    color: var(--gray-text);
+}
+
+.review-item .text {
+    margin-top: 5px;
+    color: var(--gray-text);
+    font-style: normal;
+}
+
+/* Estilos para el formulario de reseña dentro del modal */
+.review-form {
+    border-top: 2px solid var(--light-gray);
+    padding-top: 20px;
+}
+
+.review-form label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: var(--dark-text);
+}
+
+.review-form input[type="text"],
+.review-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid var(--light-gray);
+    border-radius: 5px;
+    font-family: var(--font-body);
+}
+
+.review-form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.rating-input .star-rating {
+    display: flex;
+    direction: rtl;
+    justify-content: flex-end;
+    margin-bottom: 15px;
+}
+
+.star-rating input {
+    display: none;
+}
+
+.star-rating label {
+    font-size: 2em;
+    color: #ccc;
+    cursor: pointer;
+    padding: 0 5px;
+    transition: color 0.2s;
+}
+
+.star-rating input:checked~label,
+.star-rating label:hover,
+.star-rating label:hover~label {
+    color: rgb(8, 8, 8);
+}
+
+
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6);
+    backdrop-filter: blur(2px); /* Efecto opcional, queda moderno */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto; 
+    padding: 30px;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    position: relative;
+    max-height: 80vh; 
+    overflow-y: auto;
+}
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    line-height: 20px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+/* Estilo para cada reseña en el modal */
+.modal-review-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.modal-review-item {
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #fff;
+    border: 1px solid #eee;
+}
+.review-summary .stars, .modal-review-item .stars {
+    /* Asume que tienes una variable --yellow-star o ajusta el color directamente */
+    color: var(--yellow-star, #0e0d0d); 
+    font-size: 1.2em;
+}
+
+/* Loading State (Animación de carga) */
+.loading-spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    /* Asume que tienes una variable --red-pizzarant o ajusta el color */
+    border-top: 4px solid var(--red-pizzarant, #D32F2F);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+    </style>
+</head>
+<!-- Mensaje de Éxito Flotante -->
+    <div id="success-message" 
+        style="
+            position: fixed; 
+            top: 20px; 
+            right: 20px; 
+            background-color: #489e4b; 
+            color: white; 
+            padding: 15px; 
+            border-radius: 8px; 
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); 
+            z-index: 1000; 
+            transition: opacity 0.5s; 
+            opacity: 0;
+            font-family: 'Inter', sans-serif;
+        " 
+        role="alert">
+        ¡Reseña enviada! Gracias por tu opinión.
+    </div>
+
+    <!-- Mensaje de Error Flotante -->
+    <div id="error-message" 
+        style="
+            position: fixed; 
+            top: 20px; 
+            right: 20px; 
+            background-color: #D32F2F; 
+            color: white; 
+            padding: 15px; 
+            border-radius: 8px; 
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); 
+            z-index: 1000; 
+            transition: opacity 0.5s; 
+            opacity: 0;
+            font-family: 'Inter', sans-serif;
+        " 
+        role="alert">
+        Hubo un error al enviar la reseña. Intenta de nuevo.
+    </div>
+    
+    <!-- Modal para todas las Reseñas -->
+    <div id="allReviewsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h3 id="modal-title">Todas las Reseñas de Clientes</h3>
+            <p id="modal-subtitle">Total de Reseñas: <span id="review-count">0</span></p>
+            <div id="modal-review-list" class="modal-review-list">
+                <!-- Se llenará con reseñas -->
+                <div class="loading-spinner"></div>
+                <p style="text-align: center; color: #777;">Cargando reseñas...</p>
+            </div>
+        </div>
+    </div>
+<body>
+
+    <nav class="mobile-menu-overlay" id="mobile-menu">
+        <span class="close-btn" id="close-menu">&times;</span>
+        <div class="menu-links">
+           <a href="index.html" class="active">INICIO</a>
+            <a href="menu.html" >MENÚ</a>
+            <a href="Sobre Nosotros.html">SOBRE NOSOTROS</a>
+        </div>
+    </nav>
+
+    <header>
+        <div class="container nav-content">
+            <div class="logo">
+                <img src="imagenes\PizzarantLogo.png" alt="Logo de Pizzarant"
+                    onerror="this.onerror=null; this.src='https://placehold.co/250x50/7E1412/f8f4ed?text=PIZZARANT';" />
+            </div>
+
+            <div class="menu-toggle" id="open-menu">
+                &#9776;
+            </div>
+
+            <nav class="desktop-nav">
+               <a href="index.html" class="active">Inicio</a>
+                <a href="menu.html" >Menú</a>
+                <a href="Sobre Nosotros.html">Quiénes Somos</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        
+        <section class="hero-landing">
+            <div class="hero-content">
+                <h1>PIZZARANT</h1>
+                
+            </div>
+        </section>
+
+        <section class="intro-text-section">
+            <div class="container">
+                <p>
+                    Pizzarant refleja positivamente la **armonía entre la tradición y la innovación**. Es más que una pizzería; es un espacio donde cada detalle, desde el aceite de oliva hasta el queso, celebra la riqueza de la cocina italiana con un toque puertorriqueño. Es un lugar donde querrás pasar tiempo, compartir, y saborear la autenticidad en un ambiente cálido y moderno.
+                </p>
+            </div>
+        </section>
+
+        <section class="menu-cta-section">
+            <div class="menu-cta-image">
+                </div>
+            <div class="menu-cta-text">
+                <h3>EXPLORA NUESTRO MENÚ ARTESANAL</h3>
+                <p>
+                    Cada pizza es una obra maestra de ingredientes frescos, masa madurada lentamente y cocción perfecta al horno. Descubre nuestra selección completa de sabores únicos y nuestras especialidades de la casa.
+                </p>
+                <a href="Menu.html" class="menu-button">VER MENÚ</a>
+            </div>
+        </section>
+
+        <section class="reviews-section">
+            <div class="container">
+                <h2>TU OPINIÓN ES NUESTRA MEJOR RECETA</h2>
+                <p class="subtitle">
+                    Estamos comprometidos con la calidad. ¡Escribe tu propia reseña o lee lo que nuestros clientes piensan!
+                </p>
+
+                <div class="reviews-content">
+                    
+                    <div class="review-form-box">
+                        <h3>Escribe una Reseña</h3>
+                        <form>
+                            <label for="review-name">Tu Nombre:</label>
+                            <input type="text" id="review-name" name="name" required placeholder="Ej: Juan Pérez">
+
+                            <label>Calificación:</label>
+                            <div class="rating-stars">
+                                <input type="radio" id="star5" name="rating" value="5" required>
+                                <label for="star5" title="5 estrellas">★</label>
+                                <input type="radio" id="star4" name="rating" value="4">
+                                <label for="star4" title="4 estrellas">★</label>
+                                <input type="radio" id="star3" name="rating" value="3">
+                                <label for="star3" title="3 estrellas">★</label>
+                                <input type="radio" id="star2" name="rating" value="2">
+                                <label for="star2" title="2 estrellas">★</label>
+                                <input type="radio" id="star1" name="rating" value="1">
+                                <label for="star1" title="1 estrella">★</label>
+                            </div>
+
+                            <label for="review-text">Tu Comentario:</label>
+                            <textarea id="review-text" name="comment" required placeholder="¿Qué te pareció tu experiencia?"></textarea>
+
+                            <button type="submit" id="submit-review-btn">Enviar Reseña</button>
+                        </form>
+                    </div>
+
+                    <div class="all-reviews-box">
+                        <h3>Reseñas de Clientes</h3>
+                        <p class="subtitle">Lo que la gente dice de Pizzarant:</p>
+                        
+                        <div id="latest-reviews-container">
+                
+                        <div class="review-summary">
+                            <h4>"La mejor masa de Fajardo"</h4>
+                            <span class="stars">★★★★★</span>
+                            <p>— María R.</p>
+                        </div>
+                        <div class="review-summary">
+                            <h4>"El servicio es excelente"</h4>
+                            <span class="stars">★★★★☆</span>
+                            <p>— José G.</p>
+                        </div>
+                        <div class="review-summary" style="border-bottom: none;">
+                            <h4>"¡Ingredientes súper frescos!"</h4>
+                            <span class="stars">★★★★★</span>
+                            <p>— Sofía C.</p>
+                        </div>
+
+        
+       
+    </div>
+    
+
+                       <button class="btn-primary" id="open-reviews-modal">LEER TODAS LAS RESEÑAS</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="icon-container footer-icon">
+                        <img src="imagenes\211833_timer_icon.png" alt="Icono de Horario" />
+                    </div>
+                    <h3>Horario</h3>
+                    <h4><b>Lunes a Jueves</b></h4>
+                    <p>11:00 am - 8:00 pm.</p>
+                    <h4><b>Viernes y Sabado</b></h4>
+                    <p>11:00 am - 9:00 pm.</p>
+                    <h4><b>Domingo</b></h4>
+                    <p>11:30 am - 8:00 pm.</p>
+                </div>
+
+                <div class="footer-column">
+                    <div class="icon-container footer-icon">
+                        <img src="imagenes\211829_telephone_icon.png" alt="Icono de Teléfono"
+                            onerror="this.onerror=null; this.src='https://placehold.co/40x40/000000/ffffff?text=%E2%98%8E';" />
+                    </div>
+                    <h3>Teléfono</h3>
+                    <p>(787) 719-6444</p>
+                </div>
+
+                <div class="footer-column">
+                    <div class="icon-container footer-icon">
+                        <img src="imagenes\211766_location_icon.png" alt="Icono de Ubicación"
+                            onerror="this.onerror=null; this.src='https://placehold.co/40x40/000000/ffffff?text=%E2%9C%88';" />
+                    </div>
+                    <h3>Ubicación y Email</h3>
+                    <p>Avenida Baralt en el Pueblo de Fajardo, Puerto Rico 🇵🇷</p>
+                    <div class="icon-container footer-icon" style="margin-top: 10px;">
+                        <img src="imagenes\3586360_email_envelope_mail_send_icon.png" alt="Icono de Email"
+                            onerror="this.onerror=null; this.src='https://placehold.co/40x40/000000/ffffff?text=%E2%9C%89';" />
+                    </div>
+                    <p style="margin-top: 0;">pizzarantpr@gmail.com</p>
+                </div>
+                
+                <div class="footer-column">
+                    <div class="icon-container footer-icon">
+                        <a href="https://www.instagram.com/pizzarantpr/" aria-label="Instagram">
+                            <img src="imagenes\9026811_instagram_logo_thin_icon.png" alt="Icono de Instagram"
+                                onerror="this.onerror=null; this.src='https://placehold.co/30x30/000000/ffffff?text=IG';" />
+                        </a>
+                    </div>
+                    <h3>Instagram</h3>
+                </div>
+
+                <div class="footer-column">
+                    <div class="icon-container footer-icon" style="margin-top: 10px;">
+                        <a href="https://www.facebook.com/pizzarant/" aria-label="Facebook">
+                            <img src="imagenes\211901_facebook_social_icon.png" alt="Icono de Facebook"
+                                onerror="this.onerror=null; this.src='https://placehold.co/30x30/000000/ffffff?text=FB';" />
+                        </a>
+                    </div>
+                    <h3>Facebook</h3>
+                </div>
+            </div>
+
+            <div style="text-align: center; font-size: 0.85em; color: var(--gray-text);">
+                <p>
+                    &copy; 2025 Pizzarant. Todos los derechos reservados. |
+                    <a href="#" style="color: var(--dark-text); text-decoration: none;">Aviso Legal</a> |
+                    <a href="#" style="color: var(--dark-text); text-decoration: none;">Política de Privacidad</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+<div class="modal-overlay" id="reviews-modal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <!-- Título actualizado para reflejar que SOLO es para leer -->
+
+            <h3>Todas las Reseñas de Clientes</h3>
+
+            <button class="modal-close-btn" id="close-modal-btn">&times;</button>
+
+        </div>
+
+
+
+        <!-- LISTA DE TODAS LAS RESEÑAS (aquí se cargarán las de la DB) -->
+
+        <div class="all-reviews-list" id="all-reviews-list">
+
+            <!-- Mensaje de carga inicial -->
+
+            <p class="loading-message" id="reviews-loading">Cargando reseñas...</p>
+
+        </div>
+
+
+
+       
+
+    </div>
+
+</div>
+<!-- FIN MODAL DE RESEÑAS COMPLETO -->
+    <script>
+    const API_URL = 'http://localhost:3000/api/reviews'; 
+
+// ----------------------------------------------------
+// REFERENCIAS DE ELEMENTOS HTML
+// ----------------------------------------------------
+
+// Modal y Botones
+const modalOverlay = document.getElementById('reviews-modal');
+const openModalButton = document.getElementById('open-reviews-modal');
+const closeModalButton = document.getElementById('close-modal-btn');
+const allReviewsList = document.getElementById('all-reviews-list');
+const reviewsLoading = document.getElementById('reviews-loading');
+
+// Formulario
+const reviewForm = document.querySelector('.review-form-box form'); // Selecciona el formulario dentro del div
+const submitButton = document.getElementById('submit-review-btn');
+const reviewNameInput = document.getElementById('review-name');
+const reviewTextInput = document.getElementById('review-text');
+
+// ----------------------------------------------------
+// FUNCIONES DE UTILIDAD VISUAL
+// ----------------------------------------------------
+
+/** Genera el HTML de las estrellas (ya que usas ★ y ☆ en tu HTML) */
+function generateStarsHTML(rating) {
+    const fullStar = '★'; 
+    const emptyStar = '☆'; 
+    const intRating = parseInt(rating);
+    const stars = fullStar.repeat(intRating) + emptyStar.repeat(5 - intRating);
+    // Usa el estilo de tu CSS, si tienes una clase 'stars' o lo pones inline.
+    return `<div class="stars" style="color:gold;">${stars}</div>`; 
+}
+
+/** Cierra el modal de reseñas */
+function closeModal() {
+    modalOverlay.classList.remove('active');
+    document.body.style.overflow = 'auto'; 
+}
+
+// ----------------------------------------------------
+// FUNCIÓN 1: CARGAR Y MOSTRAR RESEÑAS (GET)
+// ----------------------------------------------------
+
+/** Obtiene las reseñas del backend y las muestra en el modal. */
+async function loadReviewsFromBackend() {
+    allReviewsList.innerHTML = ''; // Limpiar lista
+    reviewsLoading.style.display = 'block'; // Mostrar cargando
+
+    try {
+        const response = await fetch(API_URL, {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+        });
+
+        if (response.ok) {
+            const reviews = await response.json();
+            reviewsLoading.style.display = 'none'; // Ocultar cargando
+
+            if (reviews && reviews.length > 0) {
+                // Iterar sobre las reseñas y crear el HTML para cada una
+                const reviewsHTML = reviews.map(review => {
+                    // Adaptar las propiedades de la DB (review.user_name, review.comment, review.rating)
+                    // Asumo que tu DB retorna 'created_at' o similar, o la fecha actual si no la tienes.
+                    const date = new Date(review.created_at || Date.now()).toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
+                    
+                    return `
+                        <div class="review-item">
+                            <div class="meta">
+                                <span class="name">${review.user_name}</span>
+                                <span class="date">${date}</span>
+                            </div>
+                            ${generateStarsHTML(review.rating)}
+                            <p class="text">${review.comment}</p>
+                        </div>
+                    `;
+                }).join('');
+                
+                allReviewsList.innerHTML = reviewsHTML;
+
+            } else {
+                allReviewsList.innerHTML = '<p class="loading-message" style="text-align: center;">Aún no hay reseñas. ¡Sé el primero!</p>';
+            }
+            
+        } else {
+            reviewsLoading.style.display = 'none';
+            allReviewsList.innerHTML = '<p class="loading-message" style="color: red; text-align: center;">Error al cargar las reseñas del servidor.</p>';
+        }
+
+    } catch (error) {
+        console.error('Error al obtener reseñas:', error);
+        reviewsLoading.style.display = 'none';
+        allReviewsList.innerHTML = '<p class="loading-message" style="color: red; text-align: center;">Error de red. No se pudo conectar al backend.</p>';
+    }
+}
+
+// ----------------------------------------------------
+// FUNCIÓN 2: ENVÍO DEL FORMULARIO (POST)
+// ----------------------------------------------------
+
+if (reviewForm) {
+    // Reemplazamos la función de simulación por la función de conexión real
+    reviewForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const originalText = submitButton.textContent;
+        const ratingInput = document.querySelector('input[name="rating"]:checked');
+        
+        const reviewData = {
+            // Usamos los IDs que tienes en tu HTML
+            user_name: reviewNameInput.value, 
+            comment: reviewTextInput.value, 
+            rating: ratingInput ? parseInt(ratingInput.value) : null,
+        };
+        
+        if (!reviewData.rating) {
+            console.error('Por favor, selecciona una calificación.');
+            // Aquí podrías añadir un mensaje visible al usuario en el formulario
+            return;
+        }
+
+        // 1. Mostrar estado de carga
+        submitButton.textContent = 'Enviando...';
+        submitButton.disabled = true;
+        
+        // --- CONEXIÓN REAL AL BACKEND ---
+        try {
+            const response = await fetch(API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(reviewData)
+            });
+
+            if (response.ok) {
+                // Éxito:
+                submitButton.textContent = '¡Enviado!';
+                // NOTA: Si tienes una clase CSS para el éxito, úsala aquí.
+                submitButton.style.backgroundColor = 'green'; 
+                
+                // Limpiamos y restauramos
+                setTimeout(() => {
+                    reviewForm.reset(); 
+                    submitButton.textContent = originalText;
+                    submitButton.disabled = false;
+                    submitButton.style.backgroundColor = ''; // Restaura el estilo original
+                    // Opcional: Recargar las reseñas si el modal está abierto, o si quieres mostrar el conteo en el front
+                    // loadReviewsFromBackend(); 
+                }, 2000);
+
+            } else {
+                // Error del servidor (ej. 400, 500)
+                const errorData = await response.json();
+                console.error('Error al guardar la reseña:', errorData);
+                submitButton.textContent = 'Error: ' + (errorData.message || 'Fallo de servidor.');
+                submitButton.style.backgroundColor = 'red'; 
+
+                setTimeout(() => {
+                    submitButton.textContent = originalText;
+                    submitButton.disabled = false;
+                    submitButton.style.backgroundColor = ''; 
+                }, 3000);
+            }
+
+        } catch (error) {
+            // Error de conexión de red
+            console.error('Error de red:', error);
+            submitButton.textContent = 'Fallo de Conexión.';
+            submitButton.style.backgroundColor = 'red'; 
+            
+            setTimeout(() => {
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+                submitButton.style.backgroundColor = ''; 
+            }, 3000);
+        }
+    });
+}
+
+// -------------------------------------------------------------
+// LÓGICA EXISTENTE DEL MODAL (AÑADIMOS EL FETCH AL ABRIR)
+// -------------------------------------------------------------
+
+// Función para abrir el modal
+if (openModalButton) {
+    openModalButton.addEventListener('click', function () {
+        // *** CAMBIO CLAVE: Llamamos a la función de conexión real ***
+        loadReviewsFromBackend(); 
+        
+        modalOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden'; 
+    });
+}
+
+
+// Función para cerrar el modal
+if (closeModalButton) {
+    closeModalButton.addEventListener('click', closeModal);
+}
+
+// Cerrar modal al hacer clic fuera del contenido (en el overlay)
+if (modalOverlay) {
+    modalOverlay.addEventListener('click', function (e) {
+        if (e.target === modalOverlay) {
+            closeModal();
+        }
+    });
+}
+
+// Opcional: Cerrar modal con la tecla ESC
+document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && modalOverlay && modalOverlay.classList.contains('active')) {
+        closeModal();
+    }
+});
+
+
+// Lógica del Menú Móvil (Hamburguesa) - Mantenida de tu código
+document.getElementById('open-menu')?.addEventListener('click', function () {
+    document.getElementById('mobile-menu').classList.add('open');
+    document.body.style.overflow = 'hidden';
+});
+
+document.getElementById('close-menu')?.addEventListener('click', function () {
+    document.getElementById('mobile-menu').classList.remove('open');
+    document.body.style.overflow = 'auto';
+});
+
+document.querySelectorAll('.menu-links a').forEach(item => {
+    item.addEventListener('click', function () {
+        document.getElementById('mobile-menu').classList.remove('open');
+        document.body.style.overflow = 'auto';
+    });
+});
+
+</script>
+
+
+</body>
+
+</html>

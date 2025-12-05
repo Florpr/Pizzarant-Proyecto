@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Sobre Pizzarant - Nuestra Esencia</title>
+
+  
+
+  <!-- 1. IMPORTACIÓN DE FUENTE ELEGANTE (SIMILAR A DON JULIO) -->
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;800&display=swap" rel="stylesheet">
+
+  
+
+  <!-- USANDO SOLO CSS PURO, SIN TAILWIND -->
+
+  <style>
+
+    /* Variables y Estilos Base */
+
+    :root {
+
+      --red-pizzarant: #7E1412;
+
+      --cream-pizzarant: #f8f4ed;
+
+      --dark-text: #222;
+
+      --gray-text: #666;
+
+      --light-gray: #f0f0f0; 
+
+      --dark-background: #1a1a1a; /* Fondo oscuro para el menú de overlay */
+
+      --menu-link-color: white; /* CAMBIADO: Blanco puro para los links */
+
+      
+
+      /* FUENTES */
+
+      --font-display: 'Playfair Display', serif; /* Para títulos */
+
+      --font-body: 'Inter', sans-serif; /* Para párrafos y cuerpo */
+
+    
+
+    --footer-bg: white; /* CAMBIADO: Fondo blanco */
+
+      --footer-text-color: var(--dark-text); /* CAMBIADO: Texto oscuro */
+
+      --footer-highlight: var(--red-pizzarant); /* Rojo para acentos */
+
+      --border-color: #ddd;
+
+    }
+
+
+
+    body {
+
+      font-family: vaR(--font-body); 
+
+      margin: 0;
+
+      padding: 0;
+
+      background-color: var(--white-pizzarant);
+
+      color: var(--dark-text);
+
+      line-height: 1.6;
+
+      overflow-x: hidden; /* Previene scroll horizontal */
+
+    }
+
+
+
+    .container {
+
+      max-width: 1200px;
+
+      margin: 0 auto;
+
+      padding: 0 20px;
+
+    }
+
+
+
+    /* HEADER */
+
+    header {
+
+      background-color: white;
+
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+      border-top: 8px solid var(--red-pizzarant);
+
+      padding: 15px 0;
+
+      position: relative; /* Necesario para el menú mobile */
+
+    }
+
+
+
+    .nav-content {
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+    }
+
+
+
+    .logo img {
+
+      max-width: 180px; 
+
+      height: auto;
+
+      display: block;
+
+    }
+
+
+
+    /* ESTILOS DE NAVEGACIÓN (ESCRITORIO) */
+
+    .desktop-nav {
+
+      display: flex;
+
+      gap: 20px; /* Espacio entre enlaces en escritorio */
+
+    }
+
+
+
+    .desktop-nav a {
+
+      text-decoration: none;
+
+      color: var(--gray-text);
+
+      font-weight: 500;
+
+      padding: 10px 15px;
+
+      transition: color 0.3s, border-bottom 0.3s;
+
+    }
+
+
+
+    .desktop-nav a:hover {
+
+      color: var(--red-pizzarant);
+
+    }
+
+
+
+    .desktop-nav .active {
+
+      color: var(--red-pizzarant);
+
+      font-weight: 700;
+
+      border-bottom: 2px solid var(--red-pizzarant);
+
+    }
+
+    
+
+    
+
+    .mobile-menu-overlay {
+
+      position: fixed;
+
+      top: 0;
+
+      left: 0;
+
+      width: 100%;
+
+      height: 100%;
+
+      background-color: var(--red-pizzarant); /* Fondo oscuro */
+
+      z-index: 9999;
+
+      display: flex;
+
+      flex-direction: column;
+
+      justify-content: center;
+
+      align-items: center;
+
+      opacity: 0;
+
+      visibility: hidden;
+
+      transition: opacity 0.3s ease-in-out, visibility 0.3s;
+
+    }
+
+
+
+    .mobile-menu-overlay.open {
+
+      opacity: 1;
+
+      visibility: visible;
+
+    }
+
+
+
+    .close-btn {
+
+      position: absolute;
+
+      top: 30px;
+
+      left: 30px;
+
+      font-size: 3em;
+
+      color: white;
+
+      cursor: pointer;
+
+      line-height: 1;
+
+    }
+
+    
+
+    .menu-links {
+
+      display: flex;
+
+      flex-direction: column;
+
+      text-align: center;
+
+      gap: 20px;
+
+    }
+
+
+
+    .menu-links a {
+
+      font-family: var(--font-display); 
+
+      text-decoration: none;
+
+      color: var(--menu-link-color); 
+
+      font-size: 2.2em; 
+
+      font-weight: 700;
+
+      padding: 15px 0;
+
+      letter-spacing: 2px;
+
+      position: relative;
+
+      transition: color 0.40s;
+
+    }
+
+
+
+    .menu-links a:hover {
+
+      color: var(--white-pizzarant);
+
+    }
+
+    
+
+    .menu-links a::after {
+
+      content: '';
+
+      display: block;
+
+      width: 30px;
+
+      height: 1px;
+
+      background-color: var(--menu-link-color); 
+
+      margin: 10px auto 0;
+
+      transition: width 0.3s;
+
+    }
+
+    
+
+    .menu-links a:hover::after {
+
+      width: 80px;
+
+      background-color: var(--cream-pizzarant);
+
+    }
+
+    
+
+    /* BOTÓN DE MENÚ HAMBURGUESA */
+
+    .menu-toggle {
+
+      display: none; /* Oculto por defecto en escritorio */
+
+      font-size: 1.25em;
+
+      cursor: pointer;
+
+      color: var(--black-pizzarant);
+
+      padding: 0 13px;
+
+    }
+
+    
+
+    /* HERO SECTION (Nuestra Esencia) */
+
+    .hero-section {
+
+      text-align: center;
+
+      padding: 80px 20px;
+
+      color: var(--dark-text); 
+
+      background-color: white; 
+
+      background-image: linear-gradient(rgba(248, 240, 240, 0), rgba(255, 255, 255, 0.8));
+
+      background-size: cover;
+
+      background-position: center;
+
+      border-bottom: 2px solid var(--light-gray);
+
+    }
+
+
+
+    .hero-section h2 {
+
+      font-family: var(--font-display); 
+
+      font-size: 3.5em; 
+
+      font-weight: 200;
+
+      line-height: 3.5;
+
+      margin-bottom: 10px;
+
+      color: var(--red-pizzarant); 
+
+    }
+
+
+
+    .hero-section p {
+
+      font-family: var(--font-display);
+
+      font-size: 1.09em;
+
+      font-weight: 5000; 
+
+      max-width: 900px;
+
+      margin: 0 auto;
+
+    }
+
+
+
+    /* SECCIONES DE CONTENIDO */
+
+    .section {
+
+      padding: 50px 0;
+
+    }
+
+
+
+    .section-header {
+
+      font-family: var(--font-display); 
+
+      font-size: 2.5em;
+
+      font-weight: 700; 
+
+      color: var(--red-pizzarant);
+
+      margin-bottom: 20px;
+
+    }
+
+
+
+    
+
+    .content-block img {
+
+      width: 35%;
+
+      height: 5%;
+
+      object-fit: cover;
+
+      border-radius: .6px;
+
+      box-shadow: 0 8px 15px rgba(250, 249, 249, 0.15);
+
+      transition: transform 0.2s;
+
+    }
+
+
+
+    .content-block img:hover {
+
+      transform: scale(1.02);
+
+    }
+
+
+
+    
+
+
+
+    .quote {
+
+      font-family: var(--font-display); 
+
+      font-size: 1.25em; 
+
+      font-style: italic;
+
+      color: var(--gray-text);
+
+      margin-top: 10px;
+
+    }
+
+
+
+   
+
+
+
+    .cta-section a {
+
+      background-color: var(--red-pizzarant);
+
+      color: white;
+
+      padding: 15px 30px;
+
+      text-decoration: none;
+
+      font-family: var(--font-display); 
+
+      font-size: 1.45em;
+
+      font-weight:0;
+
+      border-radius: 05px;
+
+      display: inline-block;
+
+      margin-top: 20px;
+
+      box-shadow: 0 4px 10px rgba(126, 20, 18, 0.4);
+
+      transition: background-color 3s, transform 3s;
+
+    }
+
+
+
+    .cta-section a:hover {
+
+      background-color: #861716;
+
+      transform: scale(1.05);
+
+    }
+
+
+
+    .cta-section .phone-number {
+
+      font-family: var(--font-display); 
+
+      font-size: 1.5em;
+
+      font-weight: 800;
+
+      color: var(--red-pizzarant);
+
+      margin-top: 10px;
+
+    }
+
+
+
+  
+
+     footer {
+            background-color: var(--footer-bg);
+            color: var(--footer-text-color);
+            padding: 50px 0 20px 0;
+            border-top: 5px solid var(--footer-highlight);
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr); /* 5 columnas para todo: 3 info + 2 redes */
+            gap: 20px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 20px
+        }
+
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 10px;
+            border-right: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .footer-column:nth-child(3), .footer-column:nth-child(4) {
+            border-right: 1px solid var(--border-color);
+        }
+
+        .footer-column:last-child {
+            border-right: none;
+        }
+
+        .footer-column h3 {
+            font-family: var(--font-display);
+            font-size: 1.1em;
+            font-weight: 700;
+            color: var(--footer-highlight);
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .footer-column h4 {
+            font-family: var(--font-display);
+            font-size: .70em;
+            font-weight: 700;
+            color: var(--dark-text);
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .footer-column p,
+        .footer-column a {
+            font-size: 0.95em;
+            color: var(--footer-text-color);
+            text-decoration: none;
+            margin-bottom: 5px;
+            line-height: 1.4;
+            transition: color 0.03s;
+        }
+
+        .footer-column a:hover {
+            color: var(--footer-highlight);
+        }
+
+        .icon-container {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .footer-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+
+
+     
+
+    @media (max-width: 767px) {
+
+      .desktop-nav {
+
+        display: none; /* Oculta la navegación normal en móvil */
+
+      }
+
+      
+
+      .menu-toggle {
+
+        display: block; /* Muestra el botón hamburguesa */
+
+      }
+
+
+
+      .footer-content {
+
+        grid-template-columns: 1fr; 
+
+        border-bottom: none;
+
+      }
+
+
+
+      .footer-column {
+
+        border-right: none;
+
+        border-bottom: 1px solid var(--border-color); 
+
+        padding-bottom: 20px;
+
+        margin-bottom: 20px;
+
+      }
+
+
+
+      .footer-column:last-child {
+
+        border-bottom: none;
+
+      }
+
+    }
+
+
+
+    @media (min-width: 768px) {
+
+      .content-block {
+
+        flex-direction: row;
+
+      }
+
+
+
+      .content-block.reverse {
+
+        flex-direction: row-reverse;
+
+      }
+
+
+
+      .hero-section h2 {
+
+        font-size: 5em;
+
+      }
+
+      
+
+      .logo img {
+
+        max-width: 250px; 
+
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+
+
+  <!-- MENÚ OVERLAY (PANTALLA COMPLETA) -->
+
+  <nav class="mobile-menu-overlay" id="mobile-menu">
+
+    <span class="close-btn" id="close-menu">&times;</span>
+
+    <div class="menu-links">
+
+      <!-- ENLACES ACTUALIZADOS: Solo Inicio, Sobre Nosotros y Menú -->
+
+      <a href="index.html">INICIO</a>
+            <a href="menu.html" >MENÚ</a>
+            <a href="Sobre Nosotros.html" class="active">SOBRE NOSOTROS</a>
+    </div>
+
+  </nav>
+
+  
+
+  <!-- HEADER: Cabecera con Logo y Navegación -->
+
+  <header>
+
+    <div class="container nav-content">
+
+      <div class="logo">
+
+        <!-- RUTA: imagenes/logo.png -->
+
+        <img
+
+          src="imagenes\PizzarantLogo.png"
+
+          alt="Logo de Pizzarant"
+
+          onerror="this.onerror=null; this.src='https://placehold.co/250x50/7E1412/f8f4ed?text=PIZZARANT';"
+
+        />
+
+      </div>
+
+      
+
+      <!-- Botón de menú hamburguesa (solo visible en móvil) -->
+
+      <div class="menu-toggle" id="open-menu">
+
+        &#9776; <!-- Código Unicode para el ícono de hamburguesa -->
+
+      </div>
+
+      
+
+      <!-- Menú de Navegación de Escritorio -->
+
+      <nav class="desktop-nav" >
+
+        <!-- Manteniendo los enlaces de escritorio consistentes con el overlay -->
+
+        <a href="index.html">Inicio</a>
+                <a href="menu.html">Menú</a>
+                <a href="Sobre Nosotros.html" class="active">Quiénes Somos</a>
+      </nav>
+
+    
+
+  </header>
+
+
+
+  <!-- HERO SECTION: Nuestra Esencia -->
+
+  <div class="hero-section">
+
+    <div class="container">
+
+      
+
+
+      <h2>Nuestra Esencia</h2>
+
+      <p>
+
+        Una tradición familiar, construida con pasión y con el compromiso inquebrantable de hacerlo todo con nuestras propias manos.
+
+      </p>
+
+    </div>
+
+  </div>
+
+
+
+  <main class="container section">
+
+
+
+    <!-- SECCIÓN 1: El Corazón de la Familia Pizzarant (Texto a la izquierda, Imagen a la derecha) -->
+
+    <section class="content-block">
+
+      <div>
+
+        <h3 class="section-header">
+
+          El Corazón de la Familia Pizzarant
+
+        </h3>
+
+        <p>
+
+          Somos un establecimiento genuinamente familiar, donde cada miembro de la familia aporta su corazón y esfuerzo al proceso. Para nosotros, Pizzarant no es solo un negocio; es el legado de una receta y una forma de entender la cocina que ha pasado de abuelos a hijos.
+
+        </p>
+
+        <p class="quote">
+
+          "Desde la contabilidad hasta el amasado, cada tarea es realizada con el mismo cariño y dedicación que si estuviéramos cocinando para nuestra propia familia."
+
+        </p>
+
+      </div>
+
+      <div>
+
+      
+
+        <img
+
+          src="imagenes/Gemini_Generated_Image_g6hde8g6hde8g6hd (1).png"
+
+          alt="Familia preparando pizza con cariño"
+          
+
+        />
+
+      </div>
+
+    </section>
+
+
+
+    <!-- SECCIÓN 2: El Compromiso Artesanal (Imagen a la izquierda, Texto a la derecha) -->
+
+    <section class="content-block reverse">
+
+      <div>
+
+        <h3 class="section-header">
+
+          Masa, Salsa y el Compromiso Artesanal
+
+        </h3>
+
+        <p>
+
+          En una industria que busca la velocidad, elegimos deliberadamente la lentitud y la calidad. Nuestra masa es de fermentación larga y natural, nuestra salsa de tomate se cocina a fuego lento por horas para una profundidad de sabor inigualable.
+
+        </p>
+
+        <p>
+
+          No usamos máquinas ni atajos. Esto significa que cada pizza, cada ingrediente, está **construido y ensamblado con nuestras propias manos**. Es un proceso que puedes saborear en cada mordisco: la diferencia entre lo producido en serie y la auténtica artesanía.
+
+        </p>
+
+      </div>
+
+   
+    </section>
+
+<br>
+    <!-- CTA SECTION: Llamada a la Acción y Contacto -->
+
+    <section class="cta-section">
+
+      <p class="section-header" style="font-size: .03; color:#333; margin-top:0;">
+
+        ¡Gracias por ser parte de nuestra historia!
+
+      </p>
+
+      <p style="font-size: 1.03em; color: var(--dark-text);">
+
+        Llámanos para ordenar o para preguntas:
+
+      </p>
+
+      <p class="phone-number">
+
+        (787)791-6444
+
+      </p>
+
+      
+
+    </section>
+
+
+
+  </main>
+
+
+
+   <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="icon-container footer-icon">
+                        <img src="imagenes\211833_timer_icon.png" alt="Icono de Horario" />
+                    </div>
+                    <h3>Horario</h3>
+                    <h4><b>Lunes a Jueves</b></h4>
+                    <p>11:00 am - 8:00 pm.</p>
+                    <h4><b>Viernes y Sabado</b></h4>
+                    <p>11:00 am - 9:00 pm.</p>
+                    <h4><b>Domingo</b></h4>
+                    <p>11:30 am - 8:00 pm.</p>
+                </div>
+
+                <div class="footer-column">
+                    <div class="icon-container footer-icon">
+                        <img src="imagenes\211829_telephone_icon.png" alt="Icono de Teléfono"
+                            onerror="this.onerror=null; this.src='https://placehold.co/40x40/000000/ffffff?text=%E2%98%8E';" />
+                    </div>
+                    <h3>Teléfono</h3>
+                    <p>(787) 719-6444</p>
+                </div>
+
+                <div class="footer-column">
+                    <div class="icon-container footer-icon">
+                        <img src="imagenes\211766_location_icon.png" alt="Icono de Ubicación"
+                            onerror="this.onerror=null; this.src='https://placehold.co/40x40/000000/ffffff?text=%E2%9C%88';" />
+                    </div>
+                    <h3>Ubicación y Email</h3>
+                    <p>Avenida Baralt en el Pueblo de Fajardo, Puerto Rico 🇵🇷</p>
+                    <div class="icon-container footer-icon" style="margin-top: 10px;">
+                        <img src="imagenes\3586360_email_envelope_mail_send_icon.png" alt="Icono de Email"
+                            onerror="this.onerror=null; this.src='https://placehold.co/40x40/000000/ffffff?text=%E2%9C%89';" />
+                    </div>
+                    <p style="margin-top: 0;">pizzarantpr@gmail.com</p>
+                </div>
+                
+                <div class="footer-column">
+                    <div class="icon-container footer-icon">
+                        <a href="https://www.instagram.com/pizzarantpr/" aria-label="Instagram">
+                            <img src="imagenes\9026811_instagram_logo_thin_icon.png" alt="Icono de Instagram"
+                                onerror="this.onerror=null; this.src='https://placehold.co/30x30/000000/ffffff?text=IG';" />
+                        </a>
+                    </div>
+                    <h3>Instagram</h3>
+                </div>
+
+                <div class="footer-column">
+                    <div class="icon-container footer-icon" style="margin-top: 10px;">
+                        <a href="https://www.facebook.com/pizzarant/" aria-label="Facebook">
+                            <img src="imagenes\211901_facebook_social_icon.png" alt="Icono de Facebook"
+                                onerror="this.onerror=null; this.src='https://placehold.co/30x30/000000/ffffff?text=FB';" />
+                        </a>
+                    </div>
+                    <h3>Facebook</h3>
+                </div>
+            </div>
+
+            <div style="text-align: center; font-size: 0.85em; color: var(--gray-text);">
+                <p>
+                    &copy; 2025 Pizzarant. Todos los derechos reservados. |
+                    <a href="#" style="color: var(--dark-text); text-decoration: none;">Aviso Legal</a> |
+                    <a href="#" style="color: var(--dark-text); text-decoration: none;">Política de Privacidad</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+  <!-- FIN DEL FOOTER ELEGANTE -->
+
+
+
+  <!-- SCRIPT PARA EL MENÚ HAMBURGUESA -->
+
+  <script>
+
+    document.getElementById('open-menu').addEventListener('click', function() {
+
+      document.getElementById('mobile-menu').classList.add('open');
+
+      document.body.style.overflow = 'hidden'; // Evita el scroll del fondo
+
+    });
+
+
+
+    document.getElementById('close-menu').addEventListener('click', function() {
+
+      document.getElementById('mobile-menu').classList.remove('open');
+
+      document.body.style.overflow = 'auto'; // Habilita el scroll de nuevo
+
+    });
+
+    
+
+    // Cierra el menú si se hace clic en cualquier enlace
+
+    document.querySelectorAll('.menu-links a').forEach(item => {
+
+      item.addEventListener('click', function() {
+
+        document.getElementById('mobile-menu').classList.remove('open');
+
+        document.body.style.overflow = 'auto'; 
+
+      });
+
+    });
+
+  </script>
+
+
+
+</body>
+
+</html>
+

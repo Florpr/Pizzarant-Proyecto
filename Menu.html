@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizzarant - Menú Artesanal</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+
+    <style>
+       
+        :root {
+            --red-pizzarant: #7E1412;
+            --cream-pizzarant: #f8f4ed;
+            --dark-text: #222;
+            --gray-text: #666;
+            --light-gray: #f0f0f0;
+            --dark-background: #1a1a1a;
+            --menu-link-color: white;
+
+            --font-display: 'Playfair Display', serif;
+            --font-body: 'Inter', sans-serif;
+
+            --footer-bg: white;
+            --footer-text-color: var(--dark-text);
+            --footer-highlight: var(--red-pizzarant);
+            --border-color: #ddd;
+
+            --menu-heading-color: var(--red-pizzarant);
+            --menu-item-border: #eee;
+        }
+
+        body {
+            font-family: var(--font-body);
+            margin: 0;
+            padding: 0;
+            background-color: var(--cream-pizzarant);
+            color: var(--dark-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-top: 8px solid var(--red-pizzarant);
+            padding: 15px 0;
+            position: relative;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            max-width: 180px;
+            height: auto;
+            display: block;
+        }
+
+        .desktop-nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        .desktop-nav a {
+            text-decoration: none;
+            color: var(--gray-text);
+            font-weight: 500;
+            padding: 10px 15px;
+            transition: color 0.3s, border-bottom 0.3s;
+        }
+
+        .desktop-nav a:hover {
+            color: var(--red-pizzarant);
+        }
+
+        .desktop-nav .active {
+            color: var(--red-pizzarant);
+            font-weight: 700;
+            border-bottom: 2px solid var(--red-pizzarant);
+        }
+
+        
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--red-pizzarant);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s;
+        }
+
+        .mobile-menu-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            font-size: 3em;
+            color: white;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .menu-links {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            gap: 20px;
+        }
+
+        .menu-links a {
+            font-family: var(--font-display);
+            text-decoration: none;
+            color: var(--menu-link-color);
+            font-size: 2.2em;
+            font-weight: 700;
+            padding: 15px 0;
+            letter-spacing: 2px;
+            position: relative;
+            transition: color 0.40s;
+        }
+
+        .menu-links a:hover {
+            color: var(--cream-pizzarant);
+        }
+
+        .menu-links a::after {
+            content: '';
+            display: block;
+            width: 30px;
+            height: 1px;
+            background-color: var(--menu-link-color);
+            margin: 10px auto 0;
+            transition: width 0.3s;
+        }
+
+        .menu-links a:hover::after {
+            width: 80px;
+            background-color: var(--cream-pizzarant);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.25em;
+            cursor: pointer;
+            color: var(--dark-text);
+            padding: 0 13px;
+        }
+        
+        
+        
+
+        .menu-hero {
+            background-color: var(--dark-background);
+            color: white;
+            padding: 80px 20px 40px 20px;
+            text-align: center;
+        }
+
+        .menu-hero h1 {
+            font-family: var(--font-display);
+            font-size: 4.5em;
+            font-weight: 800;
+            margin: 0;
+            letter-spacing: 5px;
+            color: var(--cream-pizzarant);
+        }
+
+        .menu-hero p {
+            font-size: 1.2em;
+            max-width: 800px;
+            margin: 10px auto 0;
+            color: #ccc;
+        }
+
+        .menu-section {
+            padding: 60px 0;
+        }
+
+        .menu-section h2 {
+            font-family: var(--font-display);
+            font-size: 3em;
+            color: var(--menu-heading-color);
+            text-align: center;
+            margin-bottom: 10px;
+            border-bottom: 3px solid var(--light-gray);
+            display: inline-block;
+            padding-bottom: 5px;
+            margin-left: auto;
+            margin-right: auto;
+            width: fit-content;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px 40px;
+            margin-top: 30px;
+        }
+
+        .menu-item {
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--menu-item-border);
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 5px;
+            position: relative;
+        }
+
+        .item-header h3 {
+            font-family: var(--font-display);
+            font-size: 1.6em;
+            color: var(--dark-text);
+            margin: 0;
+            font-weight: 700;
+            flex-grow: 1; 
+            padding-right: 15px;
+        }
+
+        .item-header .dots {
+            flex-grow: 1;
+            border-bottom: 1px dashed var(--gray-text); 
+            margin: 0 10px 5px 10px; 
+        }
+
+        .item-header .price {
+            font-family: var(--font-display);
+            font-size: 1.6em;
+            color: var(--red-pizzarant);
+            font-weight: 800;
+            margin: 0;
+            white-space: nowrap; 
+        }
+
+        .menu-item p {
+            font-size: 0.95em;
+            color: var(--gray-text);
+            margin: 0;
+            padding-top: 5px;
+        }
+        
+        .disclaimer {
+            text-align: center;
+            font-size: 0.9em;
+            color: var(--gray-text);
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--menu-item-border);
+        }
+
+        .sub-category h4 {
+            font-family: var(--font-display);
+            font-size: 2em;
+            color: var(--dark-text);
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid var(--red-pizzarant);
+            display: inline-block;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 700;
+        }
+        
+        footer {
+            background-color: var(--footer-bg);
+            color: var(--footer-text-color);
+            padding: 50px 0 20px 0;
+            border-top: 5px solid var(--footer-highlight);
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr); 
+            gap: 20px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 20px
+        }
+
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 10px;
+            border-right: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .footer-column:nth-child(3), .footer-column:nth-child(4) {
+            border-right: 1px solid var(--border-color);
+        }
+
+        .footer-column:last-child {
+            border-right: none;
+        }
+
+        .footer-column h3 {
+            font-family: var(--font-display);
+            font-size: 1.1em;
+            font-weight: 700;
+            color: var(--footer-highlight);
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .footer-column h4 {
+            font-family: var(--font-display);
+            font-size: .70em;
+            font-weight: 700;
+            color: var(--dark-text);
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .footer-column p,
+        .footer-column a {
+            font-size: 0.95em;
+            color: var(--footer-text-color);
+            text-decoration: none;
+            margin-bottom: 5px;
+            line-height: 1.4;
+            transition: color 0.03s;
+        }
+
+        .footer-column a:hover {
+            color: var(--footer-highlight);
+        }
+
+        .icon-container {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .footer-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+
+        @media (min-width: 768px) {
+            .menu-grid {
+                grid-template-columns: 1fr 1fr; 
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .footer-content {
+                grid-template-columns: 1fr 1fr; 
+            }
+
+            .footer-column {
+                border-right: 1px solid var(--border-color);
+                border-bottom: 1px solid var(--border-color);
+                padding-bottom: 20px;
+                margin-bottom: 20px;
+            }
+            .footer-column:nth-child(2n) {
+                border-right: none;
+            }
+            .footer-column:last-child {
+                border-bottom: none;
+                border-right: none;
+            }
+        }
+        
+        @media (max-width: 767px) {
+            .desktop-nav {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .menu-hero h1 {
+                font-size: 3em;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-column {
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+            }
+            .footer-column:last-child {
+                border-bottom: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="mobile-menu-overlay" id="mobile-menu">
+        <span class="close-btn" id="close-menu">&times;</span>
+        <div class="menu-links">
+            <a href="index.html">INICIO</a>
+            <a href="menu.html" class="active">MENÚ</a>
+            <a href="Sobre Nosotros.html">SOBRE NOSOTROS</a>
+        </div>
+    </nav>
+
+    <header>
+        <div class="container nav-content">
+            <div class="logo">
+                <img src="imagenes\PizzarantLogo.png" alt="Logo de Pizzarant"
+                    onerror="this.onerror=null; this.src='https://placehold.co/180x50/7E1412/f8f4ed?text=PIZZARANT';" />
+            </div>
+
+            <div class="menu-toggle" id="open-menu">
+                &#9776;
+            </div>
+
+            <nav class="desktop-nav">
+                <a href="index.html">Inicio</a>
+                <a href="menu.html" class="active">Menú</a>
+                <a href="Sobre Nosotros.html">Quiénes Somos</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        
+        <section class="menu-hero">
+            <div class="container">
+                <h1>MENÚ PIZZARANT</h1>
+                <p>
+                    Una sinfonía de sabores artesanales, donde la tradición italiana se fusiona con el toque vibrante de Puerto Rico. Cada ingrediente es seleccionado por su frescura y calidad superior.
+                </p>
+            </div>
+        </section>
+        
+        <section class="menu-section">
+            <div class="container">
+                
+                <h2>PIZZAS ESPECIALES</h2>
+                
+                <div class="menu-grid">
+                    
+                    <div class="menu-item">
+                        <div class="item-header">
+                            <h3>Boricua Power</h3>
+                            <div class="dots"></div>
+                            <span class="price">$15.00</span>
+                        </div>
+                        <p>Queso mozzarella, mofongo, longaniza, cebolla y pimientos morrones.</p>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="item-header">
+                            <h3>El Coquí</h3>
+                            <div class="dots"></div>
+                            <span class="price">$14.00</span>
+                        </div>
+                        <p>Queso mozzarella, queso suizo, carne de res sazonada, plátano maduro y cilantro.</p>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="item-header">
+                            <h3>El Taino</h3>
+                            <div class="dots"></div>
+                            <span class="price">$16.00</span>
+                        </div>
+                        <p>Mozzarella, pesto de cilantro, pollo desmenuzado, bacon y salsa criolla de la casa.</p>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <div class="item-header">
+                            <h3>Vegetariana Deluxe</h3>
+                            <div class="dots"></div>
+                            <span class="price">$13.50</span>
+                        </div>
+                        <p>Pimientos, espinacas, cebollas rojas, champiñones, y aceitunas negras.</p>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="item-header">
+                            <h3>La Pizarrón</h3>
+                            <div class="dots"></div>
+                            <span class="price">$17.50</span>
+                        </div>
+                        <p>Una base blanca con queso de cabra, prosciutto, rúcula fresca y reducción balsámica.</p>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="item-header">
+                            <h3>Supreme Classic</h3>
+                            <div class="dots"></div>
+                            <span class="price">$14.50</span>
+                        </div>
+                        <p>Pepperoni, salchicha italiana, cebolla, pimientos y aceitunas.</p>
+                    </div>
+                    
+                </div>
+                
+                <div class="sub-category">
+                    <h4>PIZZAS CLÁSICAS</h4>
+                </div>
+                
+                <div class="menu-grid">
+                    
+                    <div class="menu-item">
+                        <div class="item-header">
+                            <h3>Queso Mozzarella</h3>
+                            <div class="dots"></div>
+                            <span class="price">$10.00</span>
+                        </div>
+                        <p>La base clásica con nuestra salsa de tomate artesanal y mozzarella premium.</p>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="item-header">
+                            <h3>Pepperoni</h3>
+                            <div class="dots"></div>
+                            <span class="price">$11.50</span>
+                        </div>
+                        <p>Queso mozzarella, pepperoni de alta calidad.</p>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="item-header">
+                            <h3>Margarita</h3>
+                            <div class="dots"></div>
+                            <span class="price">$10.50</span>
+                        </div>
+                        <p>Tomate fresco, mozzarella, albahaca y un toque de aceite de oliva.</p>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="item-header">
+                            <h3>Jamón y Queso</h3>
+                            <div class="dots"></div>
+                            <span class="price">$11.50</span>
+                        </div>
+                        <p>Mozzarella y jamón curado.</p>
+                    </div>
+                </div>
+
+                <div class="disclaimer">
+                    <p>** Todos los precios mostrados son para pizzas de tamaño regular. Pregunte por nuestras opciones de tamaño grande y familiar. **</p>
+                </div>
+                
+                <div class="sub-category">
+                    <h4>ENTRADAS Y POSTRES</h4>
+                </div>
+                
+                <div class="menu-grid">
+                    
+                    <div class="menu-item">
+                        <div class="item-header">
+                            <h3>Nudos de Ajo y Parmesano</h3>
+                            <div class="dots"></div>
+                            <span class="price">$4.99</span>
+                        </div>
+                        <p>Masa fresca horneada, bañada en mantequilla de ajo y espolvoreada con queso parmesano.</p>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="item-header">
+                            <h3>Ensalada César</h3>
+                            <div class="dots"></div>
+                            <span class="price">$6.50</span>
+                        </div>
+                        <p>Lechuga romana, crutones, queso parmesano y aderezo César cremoso.</p>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="item-header">
+                            <h3>Churros Artesanales</h3>
+                            <div class="dots"></div>
+                            <span class="price">$5.99</span>
+                        </div>
+                        <p>Servidos con salsa de chocolate o dulce de leche.</p>
+                    </div>
+
+                    <div class="menu-item" style="border-bottom: none;">
+                        <div class="item-header">
+                            <h3>Tiramisú Clásico</h3>
+                            <div class="dots"></div>
+                            <span class="price">$7.50</span>
+                        </div>
+                        <p>El postre italiano por excelencia, cremoso y con el toque justo de café.</p>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="icon-container footer-icon">
+                        <img src="imagenes\211833_timer_icon.png" alt="Icono de Horario" />
+                    </div>
+                    <h3>Horario</h3>
+                    <h4><b>Lunes a Jueves</b></h4>
+                    <p>11:00 am - 8:00 pm.</p>
+                    <h4><b>Viernes y Sabado</b></h4>
+                    <p>11:00 am - 9:00 pm.</p>
+                    <h4><b>Domingo</b></h4>
+                    <p>11:30 am - 8:00 pm.</p>
+                </div>
+
+                <div class="footer-column">
+                    <div class="icon-container footer-icon">
+                        <img src="imagenes\211829_telephone_icon.png" alt="Icono de Teléfono"
+                            onerror="this.onerror=null; this.src='https://placehold.co/40x40/000000/ffffff?text=%E2%98%8E';" />
+                    </div>
+                    <h3>Teléfono</h3>
+                    <p>(787) 719-6444</p>
+                </div>
+
+                <div class="footer-column">
+                    <div class="icon-container footer-icon">
+                        <img src="imagenes\211766_location_icon.png" alt="Icono de Ubicación"
+                            onerror="this.onerror=null; this.src='https://placehold.co/40x40/000000/ffffff?text=%E2%9C%88';" />
+                    </div>
+                    <h3>Ubicación y Email</h3>
+                    <p>Avenida Baralt en el Pueblo de Fajardo, Puerto Rico 🇵🇷</p>
+                    <div class="icon-container footer-icon" style="margin-top: 10px;">
+                        <img src="imagenes\3586360_email_envelope_mail_send_icon.png" alt="Icono de Email"
+                            onerror="this.onerror=null; this.src='https://placehold.co/40x40/000000/ffffff?text=%E2%9C%89';" />
+                    </div>
+                    <p style="margin-top: 0;">pizzarantpr@gmail.com</p>
+                </div>
+                
+                <div class="footer-column">
+                    <div class="icon-container footer-icon">
+                        <a href="https://www.instagram.com/pizzarantpr/" aria-label="Instagram">
+                            <img src="imagenes\9026811_instagram_logo_thin_icon.png" alt="Icono de Instagram"
+                                onerror="this.onerror=null; this.src='https://placehold.co/30x30/000000/ffffff?text=IG';" />
+                        </a>
+                    </div>
+                    <h3>Instagram</h3>
+                </div>
+
+                <div class="footer-column">
+                    <div class="icon-container footer-icon" style="margin-top: 10px;">
+                        <a href="https://www.facebook.com/pizzarant/" aria-label="Facebook">
+                            <img src="imagenes\211901_facebook_social_icon.png" alt="Icono de Facebook"
+                                onerror="this.onerror=null; this.src='https://placehold.co/30x30/000000/ffffff?text=FB';" />
+                        </a>
+                    </div>
+                    <h3>Facebook</h3>
+                </div>
+            </div>
+
+            <div style="text-align: center; font-size: 0.85em; color: var(--gray-text);">
+                <p>
+                    &copy; 2025 Pizzarant. Todos los derechos reservados. |
+                    <a href="#" style="color: var(--dark-text); text-decoration: none;">Aviso Legal</a> |
+                    <a href="#" style="color: var(--dark-text); text-decoration: none;">Política de Privacidad</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        document.getElementById('open-menu').addEventListener('click', function () {
+            document.getElementById('mobile-menu').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        });
+
+        document.getElementById('close-menu').addEventListener('click', function () {
+            document.getElementById('mobile-menu').classList.remove('open');
+            document.body.style.overflow = 'auto';
+        });
+
+        document.querySelectorAll('.menu-links a').forEach(item => {
+            item.addEventListener('click', function () {
+                document.getElementById('mobile-menu').classList.remove('open');
+                document.body.style.overflow = 'auto';
+            });
+        });
+    </script>
+
+</body>
+
+</html>
